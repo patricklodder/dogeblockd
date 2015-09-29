@@ -51,26 +51,18 @@ def serve_api(mongo_db, redis_client):
         if we actually return data from this function, it should always be true. (may change this behaviour later)"""
 
         blockchainInfo = blockchain.getinfo()
-        ip = flask.request.headers.get('X-Real-Ip', flask.request.remote_addr)
-        country = config.GEOIP.country_code_by_addr(ip)
         return {
             'caught_up': util.is_caught_up_well_enough_for_government_work(),
             'last_message_index': config.LAST_MESSAGE_INDEX,
             'block_height': blockchainInfo['info']['blocks'],
-            'testnet': config.TESTNET,
-            'ip': ip,
-            'country': country
+            'testnet': config.TESTNET
         }
 
     @dispatcher.add_method
     def get_reflected_host_info():
         """Allows the requesting host to get some info about itself, such as its IP. Used for troubleshooting."""
-        ip = flask.request.headers.get('X-Real-Ip', flask.request.remote_addr)
-        country = config.GEOIP.country_code_by_addr(ip)
         return {
-            'ip': ip,
-            'cookie': flask.request.headers.get('Cookie', ''),
-            'country': country
+          'cookie': flask.request.headers.get('Cookie', ''),
         }
 
     @dispatcher.add_method
