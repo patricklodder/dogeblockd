@@ -30,7 +30,8 @@ https://github.com/surfly/gevent/archive/5f17846ec78d2c3439fb30fb304e0a99268e507
 
 gevent-socketio==0.3.6
 
-geventhttpclient==1.1.0
+https://github.com/gwik/geventhttpclient/archive/0ff53726da0520a0f31cfd63225ba521b43586e1.zip#egg=geventhttpclient
+#^ is needed because 1.1.0 only implements SSLv3
 
 redis==2.10.1
 
