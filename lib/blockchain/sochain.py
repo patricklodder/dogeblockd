@@ -36,6 +36,8 @@ def listunspent(address):
     if 'status' in result and result['status'] == 'success':
         utxo = []
         for txo in result['data']['txs']:
+            if txo['script_hex'][-4:] is not '88ac':
+                continue
             newtxo = {
                 'address': address,
                 'txid': txo['txid'],
